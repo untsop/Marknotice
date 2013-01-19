@@ -1,0 +1,12 @@
+{
+  "name": "Marknotice - Buyvm",
+  "version": "0.0.1",
+  "description": "Get notification in the Bookmark Bar when Buyvm have stock",
+  "permissions": [
+    "bookmarks", "tabs"
+  ],
+  "background": {
+    "page": "background.html"
+  },
+  "manifest_version": 2
+}
