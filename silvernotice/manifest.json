@@ -1,0 +1,12 @@
+{
+  "name": "Marknotice - Silver",
+  "version": "0.0.1",
+  "description": "Get Silver Price in the Bookmark Bar.",
+  "permissions": [
+    "bookmarks"
+  ],
+  "background": {
+    "page": "background.html"
+  },
+  "manifest_version": 2
+}
