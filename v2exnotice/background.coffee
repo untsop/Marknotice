@@ -44,6 +44,6 @@ initBackground = () ->
         createNewMark()
   else
     createNewMark()
-  setInterval getNotification, 30000
+  setInterval getNotification, 90000
 
 addEventListener "load", initBackground, false
