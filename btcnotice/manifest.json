@@ -1,0 +1,12 @@
+{
+  "name": "Marknotice - Bitcoin",
+  "version": "0.0.1",
+  "description": "Get Bitcoin Price in the Bookmark Bar.",
+  "permissions": [
+    "bookmarks", "https://mtgox.com/api/*"
+  ],
+  "background": {
+    "page": "background.html"
+  },
+  "manifest_version": 2
+}
