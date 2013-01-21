@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Get V2EX notification in the Bookmark Bar.",
   "permissions": [
-    "bookmarks", "http://*.v2ex.com/*"
+    "bookmarks", "http://*.v2ex.com/*", "tabs"
   ],
   "icons": {
     "16": "assets/icon-16.png",

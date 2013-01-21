@@ -10,4 +10,4 @@
 
 #### License
 
-The Marknotice - Buyvm Chrome Extension is under MIT license. You can freely to use or distribute for your project as long as declaring the original copyright information.
+The Marknotice Chrome Extension is under MIT license. You can freely to use or distribute for your project as long as declaring the original copyright information.

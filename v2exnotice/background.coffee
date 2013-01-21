@@ -47,3 +47,12 @@ initBackground = () ->
   setInterval getNotification, 90000
 
 addEventListener "load", initBackground, false
+
+chrome.tabs.onUpdated.addListener (tabId, changeInfo) ->
+  console.log changeInfo
+  if changeInfo.url and (changeInfo.url is exports.noticeUrl)
+    chrome.bookmarks.get exports.markid, (bookmark) ->
+      if bookmark[0].url is exports.noticeUrl
+        updateTitle = "V2EX"
+        updateUrl = exports.url
+        chrome.bookmarks.update exports.markid, {title: updateTitle, url: updateUrl}
