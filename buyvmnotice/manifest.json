@@ -8,5 +8,6 @@
   "background": {
     "page": "background.html"
   },
+  "options_page": "options.html",
   "manifest_version": 2
 }

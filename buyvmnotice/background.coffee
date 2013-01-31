@@ -1,11 +1,12 @@
-# Copyright (c) 2012 Hubuzhi.com All rights reserved.
-# Author: unstop ( unstop01@gmail.com )
+# Author: UNSTOP ( unstop01@gmail.com )
 
 exports = this
 exports.markid = localStorage["marknoticeid"]
+exports.followList = (if localStorage.followList then JSON.parse(localStorage.followList) else false)
 exports.onUrl = 'http://buyvmnotice.sinaapp.com/on.html'
 exports.offUrl = 'http://buyvmnotice.sinaapp.com/off.html'
 exports.apiUrl = 'http://buyvmnotice.sinaapp.com/buyvmapi.php'
+exports.fullapiUrl = 'http://buyvmnotice.sinaapp.com/buyvmfullapi.php'
 
 displayNotice = (data) ->
   if data.stock
@@ -15,11 +16,25 @@ displayNotice = (data) ->
     updateTitle = "Out of Stock"
     chrome.bookmarks.update exports.markid, {title: updateTitle, url: exports.offUrl}
 
+getStock = (data) ->
+  total = 0
+  for d in data
+    total += d.qty if d.qty > 0 and exports.followList[d.pid]
+  stock = total > 0;
+  displayNotice {total: total, stock: stock}
+
 callBuyvmApi = ->
   xhr = new XMLHttpRequest()
   xhr.open "GET", exports.apiUrl, true
   xhr.onreadystatechange = ->
     displayNotice JSON.parse(xhr.responseText)  if xhr.readyState is 4
+  xhr.send()
+
+callBuyvmFullApi = ->
+  xhr = new XMLHttpRequest()
+  xhr.open "GET", exports.fullapiUrl, true
+  xhr.onreadystatechange = ->
+    getStock JSON.parse(xhr.responseText)  if xhr.readyState is 4
   xhr.send()
 
 createNewMark = () ->
@@ -39,6 +54,9 @@ initBackground = () ->
         createNewMark()
   else
     createNewMark()
-  setInterval callBuyvmApi, 60000
+  if exports.followList
+    setInterval callBuyvmFullApi, 60000
+  else
+    setInterval callBuyvmApi, 60000
 
 addEventListener "load", initBackground, false
