@@ -1,4 +1,4 @@
-# Copyright (c) 2012 Hubuzhi.com All rights reserved.
+# Copyright (c) 2012 mi93.com All rights reserved.
 # Author: unstop ( unstop01@gmail.com )
 
 exports = this
@@ -27,6 +27,12 @@ getNotification = ->
     displayNotice xhr.responseText.match(/FAQ\s\((.*)\)<\/title>/)  if xhr.readyState is 4
   xhr.send()
 
+checkV2EX = () ->
+  chrome.bookmarks.search 'V2EX', (bmk)->
+    if bmk[0]
+      localStorage["marknoticeid"] = exports.markid = bmk[0].id
+    else createNewMark()
+
 createNewMark = () ->
   newMark = 
     title: 'V2EX'
@@ -41,9 +47,9 @@ initBackground = () ->
     chrome.bookmarks.get exports.markid, (bookmark) ->
       if not bookmark
         localStorage.removeItem exports.markid
-        createNewMark()
+        checkV2EX()
   else
-    createNewMark()
+    checkV2EX()
   setInterval getNotification, 90000
 
 addEventListener "load", initBackground, false
