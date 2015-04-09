@@ -8,6 +8,12 @@
 
 欢迎基于我的代码开发其他的通知提醒插件~
 
+#### Bitcoin Marknotice 更新
+* 一键安装，自动创建根目录书签
+* 更新数据获取来源
+* 新增插件图标
+@[YannisXu](http://yannisxu.me)
+
 #### License
 
 The Marknotice Chrome Extension is under MIT license. You can freely to use or distribute for your project as long as declaring the original copyright information.
